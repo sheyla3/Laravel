@@ -48,7 +48,7 @@ use App\Http\Controllers\CasalsController;
                 <label for="id_ciutat">Ciutat:</label>
                 <select id="id_ciutat" name="id_ciutat" class="form-control" value="{{ $casal->id_ciutat ?? '' }}">
                     @foreach ($ciutats as $ciutat)
-                        <option value="{{ $ciutat->id_ciutat }}">
+                        <option value="{{ $ciutat->id }}">
                             {{ $ciutat->nom }}
                         </option>
                     @endforeach
