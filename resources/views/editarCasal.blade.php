@@ -41,7 +41,7 @@ use App\Http\Controllers\CasalsController;
             </div>
             <div class="mb-3">
                 <label for="n_places">Num places:</label>
-                <input type="number" id="n_places" name="n_places" value="{{ $casal->n_places ?? '' }}" class="form-control">
+                <input type="number" id="n_places" name="n_places" value="{{ $casal->n_places ?? '' }}" class="form-control" min="0">
                 {!! $errors->first('n_places', '<small class="text-danger">:message</small>') !!}
             </div>
             <div class="mb-3">

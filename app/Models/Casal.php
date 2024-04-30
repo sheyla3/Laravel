@@ -1,14 +1,33 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Casal
+ * 
+ * @property int $id
+ * @property string $nom
+ * @property Carbon $data_inici
+ * @property Carbon $data_final
+ * @property int $n_places
+ * @property int $id_ciutat
+ * @property string|null $remember_token
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * 
+ * @property Ciutat $ciutat
+ *
+ * @package App\Models
+ */
 class Casal extends Model
 {
-    use HasFactory;
-    
 	protected $table = 'casals';
 
 	protected $casts = [

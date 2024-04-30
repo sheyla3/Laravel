@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('casals', function (Blueprint $table) {
             $table->id('id');
             $table->string('nom');
-            $table->dateTime('data_inici');
-            $table->dateTime('data_final');
+            $table->date('data_inici');
+            $table->date('data_final');
             $table->integer('n_places');
             $table->unsignedBigInteger('id_ciutat');
             $table->foreign('id_ciutat')->references('id')->on('ciutats');

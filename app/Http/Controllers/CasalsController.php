@@ -6,6 +6,7 @@ use App\Models\Casal;
 use App\Models\Ciutat;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class CasalsController extends Controller
 {
@@ -51,7 +52,7 @@ class CasalsController extends Controller
             $nuevoCasal->save();
 
             if (session()->has('user_id') || session()->has('user_name')) {
-                return redirect()->route('formularioCasal')->with('Guardado', 'Casal agregado exitosamente');
+                return redirect()->route('indexVista');
             } else {
                 return redirect()->route('/');
             }
@@ -86,18 +87,18 @@ class CasalsController extends Controller
             'n_places' => 'required',
             'id_ciutat' => 'required'
         ]);
-        $data_inici = \DateTime::createFromFormat('d/m/Y', $request->input('data_inici'))->format('Y-m-d');
-        $data_final = \DateTime::createFromFormat('d/m/Y', $request->input('data_final'))->format('Y-m-d');
+        //$data_inici = Date::createFromFormat('d/m/Y', $request->input('data_inici'))->format('Y-m-d');
+        //$data_final = Date::createFromFormat('d/m/Y', $request->input('data_final'))->format('Y-m-d');
         try {
             $casal->update([
                 'nom' => $request->input('nom'),
-                'data_inici' => $data_inici,
-                'data_final' => $data_final,
+                'data_inici' => $request->input('data_inici'),
+                'data_final' => $request->input('data_final'),
                 'n_places' => $request->input('n_places'),
                 'id_ciutat' => $request->input('id_ciutat')
             ]);
 
-            return redirect()->route('editarcasal', $id);
+            return redirect()->route('indexVista');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['ERROR' => 'Hubo un problema al procesar la solicitud'. $e]);
         }
@@ -107,6 +108,6 @@ class CasalsController extends Controller
     {
         $casal = Casal::findOrFail($id);
         $casal->delete();        
-        return view('indexVista');
+        return redirect()->route('indexVista');
     }
 }
